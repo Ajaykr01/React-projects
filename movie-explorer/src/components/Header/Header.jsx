@@ -73,10 +73,12 @@ function Header() {
             {data.map((item) => (
               <li key={item.id} className="px-4 py-2 border-b last:border-b-0">
                 <h1>{item.title}</h1>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                  alt=""
-                />
+                <Link to={`/movie/${item.id}`}>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                    alt=""
+                  />
+                </Link>
               </li>
             ))}
           </ul>
