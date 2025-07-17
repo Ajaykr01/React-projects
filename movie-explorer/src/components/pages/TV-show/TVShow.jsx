@@ -1,5 +1,6 @@
 import React from "react";
 import API from "../../../API/API";
+import Categories from "../../Categories/Categories";
 
 function TVShow() {
   const { data, loading, error } = API({
@@ -12,6 +13,7 @@ function TVShow() {
     <div>
       {loading && <p className="text-5xl text-center mt-40">Loading...</p>}
       {error && <p>{error}</p>}
+      <Categories />
       <ul>
         <div className="px-20 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6">
           {data.map((item) => (
