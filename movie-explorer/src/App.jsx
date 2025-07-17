@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
-import Home from "./components/home/Home";
-import Bollywood from "./components/pages/Bollywood/Bollywood";
-import WebSeries from "./components/pages/Web-series/WebSeries";
-import TVShow from "./components/pages/TV-show/TVShow";
+import Home from "./components/Home/Home";
+import CategoryPage from "./components/Categories/CategoryPage";
+import MovieDesc from "./components/MovieDesc";
 
 function App() {
   return (
@@ -11,10 +10,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="/category/bollywood" element={<Bollywood />} />
-          <Route path="/category/web-series" element={<WebSeries />} />
-          <Route path="/category/tv-show" element={<TVShow />} />
+          <Route path="/category/:categoryName" element={<CategoryPage />} />
         </Route>
+        <Route path="/movie/:id" element={<MovieDesc />} />
       </Routes>
     </BrowserRouter>
   );
