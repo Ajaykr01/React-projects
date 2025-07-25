@@ -45,11 +45,6 @@ async function main(prompt) {
 
     const data = await response.json();
 
-    // if (data.error) {
-    //   console.error("Gemini API error:", data.error);
-    //   return "Sorry, I couldn't understand.";
-    // }
-
     if (
       data &&
       data.candidates &&
