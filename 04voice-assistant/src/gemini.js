@@ -1,4 +1,4 @@
-const apiKey = "AIzaSyBPxrvwS6cx6Ws_uGWsNvshUZY_X7rl-vM";
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const model = "gemini-2.5-pro";
 const api = "generateContent";
 const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:${api}?key=${apiKey}`;
@@ -45,6 +45,11 @@ async function main(prompt) {
 
     const data = await response.json();
 
+    // if (data.error) {
+    //   console.error("Gemini API error:", data.error);
+    //   return "Sorry, I couldn't understand.";
+    // }
+
     if (
       data &&
       data.candidates &&
@@ -55,10 +60,8 @@ async function main(prompt) {
     ) {
       return data.candidates[0].content.parts[0].text;
     }
-    return "";
   } catch (error) {
-    console.error("Error:", error);
-    return "";
+    return "Sorry, I couldn't understand.";
   }
 }
 
