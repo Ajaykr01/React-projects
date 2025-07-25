@@ -68,7 +68,7 @@ function App() {
               <>
                 <img
                   src={aiVoiceGif}
-                  className="h-24 w-auto mb-2 sm:h-16 xs:h-12"
+                  className="h-32 w-auto mb-2 sm:h-20 xs:h-20"
                 />
                 <p className="text-white text-center px-5 text-base sm:text-sm xs:text-xs break-words">
                   {prompt}
