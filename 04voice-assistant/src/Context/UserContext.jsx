@@ -41,7 +41,7 @@ function UserContext({ children }) {
   }
 
   async function AiResponse(prompt) {
-    let finalPrompt = `You are a helpful and smart assistant. Answer clearly and briefly. \n\nQuenstion: ${prompt}\nAnswer:`;
+    let finalPrompt = `You are Jarvis, a helpful and smart AI assistant. Answer clearly and briefly. \n\nQuenstion: ${prompt}\nAnswer:`;
 
     let text = await main(finalPrompt);
     let newText = text?.replace(/[*_]/g, "")?.replace(/google/gi, "Ajay");
