@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import channelLogo from "../../assets/images/yt-logo.png";
 import { SearchContext } from "../../Context/SearchContext";
 
