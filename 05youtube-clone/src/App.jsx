@@ -1,10 +1,17 @@
 import { useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Card from "./components/pages/Card";
+import Layout from "./components/Layout/Layout";
 
 function App() {
   return (
-    <>
-      <h1>Hello</h1>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Card />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
