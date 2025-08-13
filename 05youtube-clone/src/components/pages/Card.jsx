@@ -41,10 +41,9 @@ function Card() {
     if (views >= 1_000) return (views / 1_000).toFixed(1) + "K views";
     return views + " views";
   }
-  console.log(videos);
 
   return (
-    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 overflow-y-clip">
       {videos.map((item) => (
         <div key={item.id}>
           <div className="w-full">
