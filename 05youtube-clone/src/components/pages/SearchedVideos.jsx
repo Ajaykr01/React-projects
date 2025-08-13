@@ -12,14 +12,28 @@ function SearchedVideos() {
   useEffect(() => {
     async function getData() {
       if (!value) return;
-      const url = `${BASE_URL}/search?part=snippet&chart=mostPopular&q=${value}&regionCode=IN&maxResults=20&key=${API_KEY}`;
+
       try {
+        const url = `${BASE_URL}/search?part=snippet&q=${value}&regionCode=IN&maxResults=20&key=${API_KEY}`;
         const res = await fetch(url);
         if (!res.ok) {
-          throw new error(`Response status`, res.status);
+          throw new Error(`Response status`, res.status);
         }
         const data = await res.json();
-        setQueryRes(data.items || []);
+
+        const videoId = data.items.map((item) => item.id.videoId).join(",");
+
+        if (!videoId) {
+          setQueryRes([]);
+          return;
+        }
+
+        const viewCount = await fetch(
+          `${BASE_URL}/videos?part=snippet,statistics&id=${videoId}&key=${API_KEY}`
+        );
+        const viewsData = await viewCount.json();
+
+        setQueryRes(viewsData.items || []);
       } catch (error) {
         console.error("Error fetching search results:", error);
       }
@@ -27,8 +41,6 @@ function SearchedVideos() {
 
     getData();
   }, [value]);
-
-  console.log(queryRes);
 
   function timeAgo(dateString) {
     const date = new Date(dateString);
@@ -57,6 +69,11 @@ function SearchedVideos() {
     if (views >= 1_000_000) return (views / 1_000_000).toFixed(1) + "M views";
     if (views >= 1_000) return (views / 1_000).toFixed(1) + "K views";
     return views + " views";
+  }
+
+  function truncateText(text, maxLength) {
+    if (!text) return "";
+    return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
   }
 
   return (
@@ -92,7 +109,7 @@ function SearchedVideos() {
                 </h1>
               </div>
               <div>
-                <p>{item.snippet.description}</p>
+                <p>{truncateText(item.snippet.description, 200)}</p>
               </div>
             </div>
           </div>
