@@ -1,4 +1,3 @@
-import ytIcon from "../../assets/images/youtube.png";
 import { CiSearch } from "react-icons/ci";
 import { FaMicrophone } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -30,7 +29,7 @@ function Navbar() {
       const data = await res.json();
 
       navigate("/results");
-      console.log(data.items);
+
       setSearchRes(data.items);
     } catch (error) {
       console.log("Error fetching search result", error);
@@ -40,14 +39,6 @@ function Navbar() {
   return (
     <>
       <div className="container flex w-full item-center justify-between pl-2 py-3">
-        <div className="logo flex items-center gap-4 ml-3">
-          <div className="flex items-center">
-            <img src={ytIcon} alt="yt-icon" className="h-8 mr-1" />
-            <h1 className="font-bold">YouTube</h1>
-            <span className="text-[10px] pb-5">IN</span>
-          </div>
-        </div>
-
         <form
           className="flex items-center flex-1 justify-center px-2"
           role="search"
@@ -80,7 +71,6 @@ function Navbar() {
           </button>
         </div>
       </div>
-      {/* {searchRes && <h1>hi</h1>} */}
     </>
   );
 }
