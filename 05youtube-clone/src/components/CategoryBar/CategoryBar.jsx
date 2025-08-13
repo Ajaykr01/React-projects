@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 function CategoryBar() {
   const categories = [
@@ -8,65 +9,66 @@ function CategoryBar() {
     },
     {
       id: 2,
-      name: "Music",
-    },
-    {
-      id: 3,
       name: "Bhojpuri cinema",
     },
     {
-      id: 4,
+      id: 3,
       name: "APIs",
     },
     {
-      id: 5,
+      id: 4,
       name: "Albums",
     },
     {
-      id: 6,
+      id: 5,
       name: "Information Technology",
     },
     {
-      id: 7,
+      id: 6,
       name: "Skills",
     },
     {
-      id: 8,
+      id: 7,
       name: "T-series",
     },
     {
-      id: 9,
+      id: 8,
       name: "Comedy",
     },
     {
-      id: 10,
+      id: 9,
       name: "New to you",
     },
     {
-      id: 11,
+      id: 10,
       name: "Podcast",
     },
     {
-      id: 12,
+      id: 11,
       name: "Live",
     },
     {
-      id: 13,
+      id: 12,
       name: "Gaming",
     },
   ];
   return (
     <div
       className="flex items-center gap-5 flex-nowrap whitespace-nowrap mx-5
-         overflow-x-auto scroll-smooth"
+         overflow-x-auto scroll-smooth custom-scrollbar"
     >
       {categories.map((item) => (
-        <div
+        <NavLink
           key={item.id}
-          className="px-3 rounded-lg my-5 h-7 bg-neutral-600 whitespace-nowrap snap-start"
+          to={`/category/${item.name}`}
+          className={({ isActive }) =>
+            `px-3 h-7 my-4 rounded-lg flex items-center whitespace-nowrap snap-start ${
+              isActive ? "bg-white text-black" : "bg-neutral-600"
+            }`
+          }
         >
           {item.name}
-        </div>
+        </NavLink>
       ))}
     </div>
   );
